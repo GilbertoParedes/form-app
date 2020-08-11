@@ -10,24 +10,14 @@ import { User } from '../models/user';
 })
 export class AuthService {
   isLoggedIn = false;
-  token: any;
-
+  token:any;
   constructor(
     private http: HttpClient,
     private storage: NativeStorage,
     private env: EnvService,
   ) { }
-  
-  /**
-   * Método de autenticación de usuario, genera un token si el usuario existe y lo almacena en
-   * el alamcenamiento del dispositivo:
-   * @param email type String
-   * @param password type String
-   * @author GilParedes
-   * 
-   */
   login(email: String, password: String) {
-    return this.http.post(this.env.API_URL + 'auth/login',
+    return this.http.post(this.env.API_URL + 'api/auth/login',
       {email: email, password: password}
     ).pipe(
       tap(token => {
@@ -44,6 +34,50 @@ export class AuthService {
       }),
     );
   }
-
-
+  register(fName: String, lName: String, email: String, password: String) {
+    return this.http.post(this.env.API_URL + 'api/auth/register',
+      {fName: fName, lName: lName, email: email, password: password}
+    )
+  }
+  logout() {
+    const headers = new HttpHeaders({
+      'Authorization': this.token["token_type"]+" "+this.token["access_token"]
+    });
+    return this.http.get(this.env.API_URL + 'api/auth/logout', { headers: headers })
+    .pipe(
+      tap(data => {
+        this.storage.remove("token");
+        this.isLoggedIn = false;
+        delete this.token;
+        return data;
+      })
+    )
+  }
+  user() {
+    const headers = new HttpHeaders({
+      'Authorization': this.token["token_type"]+" "+this.token["access_token"]
+    });
+    return this.http.get<User>(this.env.API_URL + 'api/auth/user', { headers: headers })
+    .pipe(
+      tap(user => {
+        return user;
+      })
+    )
+  }
+  getToken() {
+    return this.storage.getItem('token').then(
+      data => {
+        this.token = data;
+        if(this.token != null) {
+          this.isLoggedIn=true;
+        } else {
+          this.isLoggedIn=false;
+        }
+      },
+      error => {
+        this.token = null;
+        this.isLoggedIn=false;
+      }
+    );
+  }
 }
