@@ -11,4 +11,13 @@
   <div *ngIf="user != undefined">
       Welcome {{ user["first_name"]  }} {{ user["last_name"]  }}
   </div>
+  <ion-row>
+    <ion-col>
+      <ion-button color="primary" expand="full" color="primary" (click)="create()">Crear Nuevo</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button color="primary" expand="full" color="danger" (click)="register()">Ver Lista</ion-button>
+    </ion-col>
+  </ion-row>
+
 </ion-content>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
+// import { UserPage } from '../user/user.page';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,8 @@ export class DashboardPage implements OnInit {
 
   constructor(
     private menu: MenuController,
-    private authService: AuthService
+    private authService: AuthService,
+    private navCtrl: NavController
   ) { 
     this.menu.enable(true);
    }
@@ -28,6 +30,14 @@ export class DashboardPage implements OnInit {
         this.user = user;
       }
     );
+  }
+
+  create() {
+     this.navCtrl.navigateForward('user');
+  }
+
+  listUSer(){
+    // this.navCtrl.navigateForward('');
   }
 
 }

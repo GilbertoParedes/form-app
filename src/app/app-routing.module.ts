@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'login', loadChildren: './pages/auth/login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './pages/auth/register/register.module#RegisterPageModule' },
 
-  { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule', canActivate: [AuthGuard] },
+  // { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule', canActivate: [AuthGuard] },
+
+
   // { path: 'home', loadChildren: './home/home.module#HomePageModule', canActivate: [AuthGuard] },
   // { path: 'list', loadChildren: './list/list.module#ListPageModule', canActivate: [AuthGuard] },
   // {
@@ -22,10 +24,14 @@ const routes: Routes = [
   //   path: 'register',
   //   loadChildren: () => import('./pages/auth/register/register.module').then( m => m.RegisterPageModule)
   // },
-  // {
-  //   path: 'dashboard',
-  //   loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  // }
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
+  },
 ];
 @NgModule({
   imports: [
