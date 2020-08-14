@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Dashboard</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf=\"user != undefined\">\n      Welcome {{ user[\"first_name\"]  }} {{ user[\"last_name\"]  }}\n  </div>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Dashboard</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf=\"user != undefined\">\n      Welcome {{ user[\"first_name\"]  }} {{ user[\"last_name\"]  }}\n  </div>\n  <ion-row>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"primary\" (click)=\"create()\">Crear Nuevo</ion-button>\n    </ion-col>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"danger\" (click)=\"register()\">Ver Lista</ion-button>\n    </ion-col>\n  </ion-row>\n\n</ion-content>");
 
 /***/ }),
 
@@ -123,10 +123,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import { UserPage } from '../user/user.page';
 let DashboardPage = class DashboardPage {
-    constructor(menu, authService) {
+    constructor(menu, authService, navCtrl) {
         this.menu = menu;
         this.authService = authService;
+        this.navCtrl = navCtrl;
         this.menu.enable(true);
     }
     ngOnInit() {
@@ -136,10 +138,17 @@ let DashboardPage = class DashboardPage {
             this.user = user;
         });
     }
+    create() {
+        this.navCtrl.navigateForward('user');
+    }
+    listUSer() {
+        // this.navCtrl.navigateForward('');
+    }
 };
 DashboardPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
-    { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"] }
+    { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] }
 ];
 DashboardPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -148,6 +157,129 @@ DashboardPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./dashboard.page.scss */ "./src/app/pages/dashboard/dashboard.page.scss")).default]
     })
 ], DashboardPage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/auth.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/auth.service.ts ***!
+  \******************************************/
+/*! exports provided: AuthService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/native-storage/ngx */ "./node_modules/@ionic-native/native-storage/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _env_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./env.service */ "./src/app/services/env.service.ts");
+
+
+
+
+
+
+let AuthService = class AuthService {
+    constructor(http, storage, env) {
+        this.http = http;
+        this.storage = storage;
+        this.env = env;
+        this.isLoggedIn = false;
+    }
+    login(email, password) {
+        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
+            this.storage.setItem('token', token)
+                .then(() => {
+                console.log('Token Stored');
+            }, error => console.error('Error storing item', error));
+            this.token = token;
+            this.isLoggedIn = true;
+            return token;
+        }));
+    }
+    register(fName, lName, email, password) {
+        return this.http.post(this.env.API_URL + 'api/auth/register', { fName: fName, lName: lName, email: email, password: password });
+    }
+    logout() {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+            'Authorization': this.token["token_type"] + " " + this.token["access_token"]
+        });
+        return this.http.get(this.env.API_URL + 'api/auth/logout', { headers: headers })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(data => {
+            this.storage.remove("token");
+            this.isLoggedIn = false;
+            delete this.token;
+            return data;
+        }));
+    }
+    user() {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+            'Authorization': this.token["token_type"] + " " + this.token["access_token"]
+        });
+        return this.http.get(this.env.API_URL + 'api/auth/user', { headers: headers })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(user => {
+            return user;
+        }));
+    }
+    getToken() {
+        return this.storage.getItem('token').then(data => {
+            this.token = data;
+            if (this.token != null) {
+                this.isLoggedIn = true;
+            }
+            else {
+                this.isLoggedIn = false;
+            }
+        }, error => {
+            this.token = null;
+            this.isLoggedIn = false;
+        });
+    }
+};
+AuthService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeStorage"] },
+    { type: _env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"] }
+];
+AuthService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], AuthService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/env.service.ts":
+/*!*****************************************!*\
+  !*** ./src/app/services/env.service.ts ***!
+  \*****************************************/
+/*! exports provided: EnvService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnvService", function() { return EnvService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
+let EnvService = class EnvService {
+    constructor() {
+        this.API_URL = 'http://apiform.test/';
+    }
+};
+EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], EnvService);
 
 
 

@@ -16,10 +16,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function $$_lazy_route_resourceLazyRecursive(module, exports, __webpack_require__) {
     var map = {
-      "./pages/auth/login/login.module": ["./src/app/pages/auth/login/login.module.ts", "common", "pages-auth-login-login-module"],
-      "./pages/auth/register/register.module": ["./src/app/pages/auth/register/register.module.ts", "common", "pages-auth-register-register-module"],
-      "./pages/dashboard/dashboard.module": ["./src/app/pages/dashboard/dashboard.module.ts", "pages-dashboard-dashboard-module"],
-      "./pages/landing/landing.module": ["./src/app/pages/landing/landing.module.ts", "common", "pages-landing-landing-module"]
+      "./pages/auth/login/login.module": ["./src/app/pages/auth/login/login.module.ts", "default~pages-auth-login-login-module~pages-auth-register-register-module~pages-landing-landing-module", "pages-auth-login-login-module"],
+      "./pages/auth/register/register.module": ["./src/app/pages/auth/register/register.module.ts", "default~pages-auth-login-login-module~pages-auth-register-register-module~pages-landing-landing-module", "pages-auth-register-register-module"],
+      "./pages/landing/landing.module": ["./src/app/pages/landing/landing.module.ts", "default~pages-auth-login-login-module~pages-auth-register-register-module~pages-landing-landing-module", "pages-landing-landing-module"]
     };
 
     function webpackAsyncContext(req) {
@@ -185,19 +184,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-    /* harmony import */
-
-
-    var _guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./guard/auth.guard */
-    "./src/app/guard/auth.guard.ts");
 
     var routes = [{
       path: '',
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-landing-landing-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-landing-landing-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~pages-auth-login-login-module~pages-auth-register-register-module~pages-landing-landing-module"), __webpack_require__.e("pages-landing-landing-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/landing/landing.module */
         "./src/app/pages/landing/landing.module.ts")).then(function (m) {
           return m.LandingPageModule;
@@ -212,10 +205,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'register',
       loadChildren: './pages/auth/register/register.module#RegisterPageModule'
-    }, {
+    }, // { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule', canActivate: [AuthGuard] },
+    // { path: 'home', loadChildren: './home/home.module#HomePageModule', canActivate: [AuthGuard] },
+    // { path: 'list', loadChildren: './list/list.module#ListPageModule', canActivate: [AuthGuard] },
+    // {
+    //   path: 'login',
+    //   loadChildren: () => import('./pages/auth/login/login.module').then( m => m.LoginPageModule)
+    // },
+    // {
+    //   path: 'register',
+    //   loadChildren: () => import('./pages/auth/register/register.module').then( m => m.RegisterPageModule)
+    // },
+    {
       path: 'dashboard',
-      loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule',
-      canActivate: [_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-dashboard-dashboard-module */
+        "pages-dashboard-dashboard-module").then(__webpack_require__.bind(null,
+        /*! ./pages/dashboard/dashboard.module */
+        "./src/app/pages/dashboard/dashboard.module.ts")).then(function (m) {
+          return m.DashboardPageModule;
+        });
+      }
+    }, {
+      path: 'user',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-user-user-module */
+        "pages-user-user-module").then(__webpack_require__.bind(null,
+        /*! ./pages/user/user.module */
+        "./src/app/pages/user/user.module.ts")).then(function (m) {
+          return m.UserPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -449,298 +471,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_10__["NativeStorage"]],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
     })], AppModule);
-    /***/
-  },
-
-  /***/
-  "./src/app/guard/auth.guard.ts":
-  /*!*************************************!*\
-    !*** ./src/app/guard/auth.guard.ts ***!
-    \*************************************/
-
-  /*! exports provided: AuthGuard */
-
-  /***/
-  function srcAppGuardAuthGuardTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "AuthGuard", function () {
-      return AuthGuard;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/router */
-    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-    /* harmony import */
-
-
-    var _services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ../services/auth.service */
-    "./src/app/services/auth.service.ts");
-
-    var AuthGuard = /*#__PURE__*/function () {
-      function AuthGuard(router, authService) {
-        _classCallCheck(this, AuthGuard);
-
-        this.router = router;
-        this.authService = authService;
-      }
-
-      _createClass(AuthGuard, [{
-        key: "canActivate",
-        value: function canActivate(next, state) {
-          var currentUser = this.authService.isLoggedIn;
-
-          if (currentUser) {
-            return true;
-          }
-
-          this.router.navigate(['/landing']);
-          return false;
-        }
-      }]);
-
-      return AuthGuard;
-    }();
-
-    AuthGuard.ctorParameters = function () {
-      return [{
-        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-      }, {
-        type: _services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]
-      }];
-    };
-
-    AuthGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    })], AuthGuard);
-    /***/
-  },
-
-  /***/
-  "./src/app/services/auth.service.ts":
-  /*!******************************************!*\
-    !*** ./src/app/services/auth.service.ts ***!
-    \******************************************/
-
-  /*! exports provided: AuthService */
-
-  /***/
-  function srcAppServicesAuthServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "AuthService", function () {
-      return AuthService;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/common/http */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-    /* harmony import */
-
-
-    var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! rxjs/operators */
-    "./node_modules/rxjs/_esm2015/operators/index.js");
-    /* harmony import */
-
-
-    var _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! @ionic-native/native-storage/ngx */
-    "./node_modules/@ionic-native/native-storage/__ivy_ngcc__/ngx/index.js");
-    /* harmony import */
-
-
-    var _env_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./env.service */
-    "./src/app/services/env.service.ts");
-
-    var AuthService = /*#__PURE__*/function () {
-      function AuthService(http, storage, env) {
-        _classCallCheck(this, AuthService);
-
-        this.http = http;
-        this.storage = storage;
-        this.env = env;
-        this.isLoggedIn = false;
-      }
-
-      _createClass(AuthService, [{
-        key: "login",
-        value: function login(email, password) {
-          var _this2 = this;
-
-          return this.http.post(this.env.API_URL + 'api/auth/login', {
-            email: email,
-            password: password
-          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (token) {
-            _this2.storage.setItem('token', token).then(function () {
-              console.log('Token Stored');
-            }, function (error) {
-              return console.error('Error storing item', error);
-            });
-
-            _this2.token = token;
-            _this2.isLoggedIn = true;
-            return token;
-          }));
-        }
-      }, {
-        key: "register",
-        value: function register(fName, lName, email, password) {
-          return this.http.post(this.env.API_URL + 'api/auth/register', {
-            fName: fName,
-            lName: lName,
-            email: email,
-            password: password
-          });
-        }
-      }, {
-        key: "logout",
-        value: function logout() {
-          var _this3 = this;
-
-          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-            'Authorization': this.token["token_type"] + " " + this.token["access_token"]
-          });
-          return this.http.get(this.env.API_URL + 'api/auth/logout', {
-            headers: headers
-          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (data) {
-            _this3.storage.remove("token");
-
-            _this3.isLoggedIn = false;
-            delete _this3.token;
-            return data;
-          }));
-        }
-      }, {
-        key: "user",
-        value: function user() {
-          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-            'Authorization': this.token["token_type"] + " " + this.token["access_token"]
-          });
-          return this.http.get(this.env.API_URL + 'api/auth/user', {
-            headers: headers
-          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (user) {
-            return user;
-          }));
-        }
-      }, {
-        key: "getToken",
-        value: function getToken() {
-          var _this4 = this;
-
-          return this.storage.getItem('token').then(function (data) {
-            _this4.token = data;
-
-            if (_this4.token != null) {
-              _this4.isLoggedIn = true;
-            } else {
-              _this4.isLoggedIn = false;
-            }
-          }, function (error) {
-            _this4.token = null;
-            _this4.isLoggedIn = false;
-          });
-        }
-      }]);
-
-      return AuthService;
-    }();
-
-    AuthService.ctorParameters = function () {
-      return [{
-        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
-      }, {
-        type: _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeStorage"]
-      }, {
-        type: _env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"]
-      }];
-    };
-
-    AuthService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    })], AuthService);
-    /***/
-  },
-
-  /***/
-  "./src/app/services/env.service.ts":
-  /*!*****************************************!*\
-    !*** ./src/app/services/env.service.ts ***!
-    \*****************************************/
-
-  /*! exports provided: EnvService */
-
-  /***/
-  function srcAppServicesEnvServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "EnvService", function () {
-      return EnvService;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-
-    var EnvService = function EnvService() {
-      _classCallCheck(this, EnvService);
-
-      this.API_URL = 'http://apiform.test/';
-    };
-
-    EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    })], EnvService);
     /***/
   },
 

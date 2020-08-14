@@ -8,5 +8,33 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" position="stacked">Name</ion-label>
+      <ion-input type="text" name="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="stacked">Apellido</ion-label>
+      <ion-input type="text" name="apellido"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label>Sexo</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option value="f">Mujer</ion-select-option>
+      <ion-select-option value="m">Hombre</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+      <ion-label color="primary" position="stacked">Calle</ion-label>
+      <ion-input type="text" name="calle"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="stacked">Colonia</ion-label>
+      <ion-input type="text" name="colonia"></ion-input>
+    </ion-item>
+    <ion-item>
+  <ion-label>Fecha de NAcimiento</ion-label>
+  <ion-datetime displayFormat="MM DD YY"></ion-datetime>
+</ion-item>
+  </ion-list>
 </ion-content>

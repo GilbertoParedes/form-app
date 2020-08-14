@@ -4,7 +4,7 @@ import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'landing',
     loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
   },
   { path: 'landing', loadChildren: './pages/landing/landing.module#LandingPageModule' },  
@@ -29,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
   {
-    path: 'user',
+    path: '',
     loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
   },
 ];
