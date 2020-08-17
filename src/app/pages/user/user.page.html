@@ -8,33 +8,55 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <form #form="ngForm" (ngSubmit)="save(form)" method="post">
+      <ion-item>
+        <ion-label color="primary" position="stacked">Name</ion-label>
+        <ion-input ngModel type="text" name="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Apellido</ion-label>
+        <ion-input ngModel type="text" name="apellido"></ion-input>
+      </ion-item>
+      <ion-item>
+      <ion-label>Sexo</ion-label>
+        <ion-select [(ngModel)]="selected_genero" name="genero" placeholder="Select One">
+          <ion-select-option value="f">Mujer</ion-select-option>
+          <ion-select-option value="m">Hombre</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-card-content>
+        <ion-button ion-button color="danger" icon-right expand="full" (click)="takePicture()">
+          Tomar Foto
+          <ion-icon name="camera">
+
+          </ion-icon>
+        </ion-button>
+        <img [src]="base64Image">
+      </ion-card-content>
     <ion-item>
-      <ion-label color="primary" position="stacked">Name</ion-label>
-      <ion-input type="text" name="name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" position="stacked">Apellido</ion-label>
-      <ion-input type="text" name="apellido"></ion-input>
-    </ion-item>
-    <ion-item>
-    <ion-label>Sexo</ion-label>
-    <ion-select placeholder="Select One">
-      <ion-select-option value="f">Mujer</ion-select-option>
-      <ion-select-option value="m">Hombre</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-      <ion-label color="primary" position="stacked">Calle</ion-label>
-      <ion-input type="text" name="calle"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" position="stacked">Colonia</ion-label>
-      <ion-input type="text" name="colonia"></ion-input>
-    </ion-item>
-    <ion-item>
-  <ion-label>Fecha de NAcimiento</ion-label>
-  <ion-datetime displayFormat="MM DD YY"></ion-datetime>
-</ion-item>
-  </ion-list>
+        <ion-label color="primary" position="stacked">Calle</ion-label>
+        <ion-input ngModel type="text" name="calle"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Colonia</ion-label>
+        <ion-input ngModel type="text" name="colonia"></ion-input>
+      </ion-item>
+      <ion-item>
+        <!-- <ion-label>Nacimiento</ion-label> -->
+        <ion-datetime [(ngModel)]="fecha" name="fecha" displayFormat="DD MMMM YYYY" placeholder="Fecha Nacimiento"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Lugar nacimiento</ion-label>
+        <ion-input ngModel type="text" name="lugar_nacimiento"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Casa propia</ion-label>
+        <ion-input ngModel type="text" name="casa_propia"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Tiempo viviendo</ion-label>
+        <ion-input ngModel type="text" name="tiempo_viviendo"></ion-input>
+      </ion-item>
+    <ion-button type="submit" expand="full" color="primary">Guardar</ion-button>
+  </form>
 </ion-content>
