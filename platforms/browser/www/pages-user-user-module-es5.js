@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/dashboard\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>user</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/dashboard\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>user</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form #form=\"ngForm\" (ngSubmit)=\"save(form)\" method=\"post\">\n      <ion-item>\n        <ion-label color=\"primary\" position=\"stacked\">Name</ion-label>\n        <ion-input ngModel type=\"text\" name=\"name\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label color=\"primary\" position=\"stacked\">Apellido</ion-label>\n        <ion-input ngModel type=\"text\" name=\"apellido\"></ion-input>\n      </ion-item>\n      <ion-item>\n      <ion-label>Sexo</ion-label>\n        <ion-select [(ngModel)]=\"selected_genero\" name=\"genero\" placeholder=\"Select One\">\n          <ion-select-option value=\"f\">Mujer</ion-select-option>\n          <ion-select-option value=\"m\">Hombre</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <ion-card-content>\n        <ion-button ion-button color=\"danger\" icon-right expand=\"full\" (click)=\"takePicture()\">\n          Tomar Foto\n          <ion-icon name=\"camera\">\n\n          </ion-icon>\n        </ion-button>\n        <img [src]=\"base64Image\">\n      </ion-card-content>\n    <ion-item>\n        <ion-label color=\"primary\" position=\"stacked\">Calle</ion-label>\n        <ion-input ngModel type=\"text\" name=\"calle\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label color=\"primary\" position=\"stacked\">Colonia</ion-label>\n        <ion-input ngModel type=\"text\" name=\"colonia\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <!-- <ion-label>Nacimiento</ion-label> -->\n        <ion-datetime [(ngModel)]=\"fecha\" name=\"fecha\" displayFormat=\"DD MMMM YYYY\" placeholder=\"Fecha Nacimiento\"></ion-datetime>\n      </ion-item>\n      <ion-item>\n        <ion-label color=\"primary\" position=\"stacked\">Lugar nacimiento</ion-label>\n        <ion-input ngModel type=\"text\" name=\"lugar_nacimiento\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label color=\"primary\" position=\"stacked\">Casa propia</ion-label>\n        <ion-input ngModel type=\"text\" name=\"casa_propia\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label color=\"primary\" position=\"stacked\">Tiempo viviendo</ion-label>\n        <ion-input ngModel type=\"text\" name=\"tiempo_viviendo\"></ion-input>\n      </ion-item>\n    <ion-button type=\"submit\" expand=\"full\" color=\"primary\">Guardar</ion-button>\n  </form>\n</ion-content>\n";
     /***/
   },
 
@@ -209,19 +209,84 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @ionic-native/native-storage/ngx */
+    "./node_modules/@ionic-native/native-storage/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var src_app_services_env_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/app/services/env.service */
+    "./src/app/services/env.service.ts");
+    /* harmony import */
+
+
+    var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @ionic-native/camera/ngx */
+    "./node_modules/@ionic-native/camera/__ivy_ngcc__/ngx/index.js");
 
     var UserPage = /*#__PURE__*/function () {
-      function UserPage() {
+      function UserPage(http, storage, env, camera) {
         _classCallCheck(this, UserPage);
+
+        this.http = http;
+        this.storage = storage;
+        this.env = env;
+        this.camera = camera;
+        this.token = '';
       }
 
       _createClass(UserPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {}
+      }, {
+        key: "takePicture",
+        value: function takePicture() {
+          var _this = this;
+
+          var options = {
+            quality: 100,
+            destinationType: this.camera.DestinationType.FILE_URI,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE
+          };
+          this.camera.getPicture(options).then(function (imageData) {
+            // imageData is either a base64 encoded string or a file URI
+            // If it's base64 (DATA_URL):
+            _this.base64Image = 'data:image/jpeg;base64,' + imageData;
+          }, function (err) {// Handle error
+          });
+        }
+      }, {
+        key: "save",
+        value: function save(form) {
+          console.log(form);
+        }
       }]);
 
       return UserPage;
     }();
+
+    UserPage.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }, {
+        type: _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_3__["NativeStorage"]
+      }, {
+        type: src_app_services_env_service__WEBPACK_IMPORTED_MODULE_4__["EnvService"]
+      }, {
+        type: _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_5__["Camera"]
+      }];
+    };
 
     UserPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-user',
@@ -232,6 +297,50 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./user.page.scss */
       "./src/app/pages/user/user.page.scss"))["default"]]
     })], UserPage);
+    /***/
+  },
+
+  /***/
+  "./src/app/services/env.service.ts":
+  /*!*****************************************!*\
+    !*** ./src/app/services/env.service.ts ***!
+    \*****************************************/
+
+  /*! exports provided: EnvService */
+
+  /***/
+  function srcAppServicesEnvServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "EnvService", function () {
+      return EnvService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+    var EnvService = function EnvService() {
+      _classCallCheck(this, EnvService);
+
+      this.API_URL = 'http://apiform.test/';
+    };
+
+    EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], EnvService);
     /***/
   }
 }]);

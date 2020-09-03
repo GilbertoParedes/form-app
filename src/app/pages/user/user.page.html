@@ -27,11 +27,9 @@
       <ion-card-content>
         <ion-button ion-button color="danger" icon-right expand="full" (click)="takePicture()">
           Tomar Foto
-          <ion-icon name="camera">
-
-          </ion-icon>
+          <ion-icon name="camera"></ion-icon>
         </ion-button>
-        <img [src]="base64Image">
+        <ion-img [src]="imageIne"></ion-img>
       </ion-card-content>
     <ion-item>
         <ion-label color="primary" position="stacked">Calle</ion-label>

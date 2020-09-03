@@ -14,12 +14,12 @@ export class UserPage implements OnInit {
   token:any = '';
   selected_genero:string;
   fecha:string;
-  base64Image: string;
+  imageIne:string;
   constructor(
     private http: HttpClient,
     private storage: NativeStorage,
     private env: EnvService,
-    private camera: Camera
+    private camera: Camera,
   ) { }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class UserPage implements OnInit {
   takePicture() {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -36,7 +36,8 @@ export class UserPage implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
-     this.base64Image = 'data:image/jpeg;base64,' + imageData;
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.imageIne = base64Image;
     }, (err) => {
      // Handle error
     });
