@@ -13,11 +13,46 @@
   </div>
   <ion-row>
     <ion-col>
-      <ion-button color="primary" expand="full" color="primary" (click)="create()">Crear Nuevo</ion-button>
+      <ion-card>
+        <!-- <ion-card-header>
+          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-title>Crea </ion-card-title>
+        </ion-card-header> -->
+        <ion-card-content>
+          <ion-button color="primary" expand="block" color="primary" (click)="create()">Nuevo Registro</ion-button>
+        </ion-card-content>
+      </ion-card>
     </ion-col>
     <ion-col>
-      <ion-button color="primary" expand="full" color="danger" (click)="register()">Ver Lista</ion-button>
+      <ion-card>
+        <!-- <ion-card-header>
+          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-title>Card Title</ion-card-title>
+        </ion-card-header> -->
+        <ion-card-content>
+          <ion-button color="primary" expand="block" color="warning" (click)="register()">Ver Lista</ion-button>
+        </ion-card-content>
+      </ion-card>
     </ion-col>
   </ion-row>
 
 </ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="schedule">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Schedule</ion-label>
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="speakers">
+      <ion-icon name="person-circle"></ion-icon>
+      <ion-label>Ver Lista</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="add" expand="full" color="primary" (click)="create()">
+      <ion-icon name="add"></ion-icon>
+      <ion-label>Nuevo registro</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
