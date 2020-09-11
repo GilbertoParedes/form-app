@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Dashboard</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf=\"user != undefined\">\n      Welcome {{ user[\"first_name\"]  }} {{ user[\"last_name\"]  }}\n  </div>\n  <ion-row>\n    <ion-col>\n      <ion-card>\n        <!-- <ion-card-header>\n          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>\n          <ion-card-title>Crea </ion-card-title>\n        </ion-card-header> -->\n        <ion-card-content>\n          <ion-button color=\"primary\" expand=\"block\" color=\"primary\" (click)=\"create()\">Nuevo Registro</ion-button>\n        </ion-card-content>\n      </ion-card>\n    </ion-col>\n    <ion-col>\n      <ion-card>\n        <!-- <ion-card-header>\n          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>\n          <ion-card-title>Card Title</ion-card-title>\n        </ion-card-header> -->\n        <ion-card-content>\n          <ion-button color=\"primary\" expand=\"block\" color=\"warning\" (click)=\"register()\">Ver Lista</ion-button>\n        </ion-card-content>\n      </ion-card>\n    </ion-col>\n  </ion-row>\n\n</ion-content>\n<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"schedule\">\n      <ion-icon name=\"calendar\"></ion-icon>\n      <ion-label>Schedule</ion-label>\n      <ion-badge>6</ion-badge>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"speakers\">\n      <ion-icon name=\"person-circle\"></ion-icon>\n      <ion-label>Ver Lista</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"add\" expand=\"full\" color=\"primary\" (click)=\"create()\">\n      <ion-icon name=\"add\"></ion-icon>\n      <ion-label>Nuevo registro</ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n</ion-tabs>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Dashboard</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf=\"user != undefined\">\n      Welcome {{ user[\"first_name\"]  }} {{ user[\"last_name\"]  }}\n  </div>\n  <ion-row>\n    <ion-col>\n      <ion-card>\n        <!-- <ion-card-header>\n          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>\n          <ion-card-title>Crea </ion-card-title>\n        </ion-card-header> -->\n        <ion-card-content>\n          <ion-button color=\"primary\" expand=\"block\" color=\"primary\" (click)=\"create()\">Nuevo Registro</ion-button>\n        </ion-card-content>\n      </ion-card>\n    </ion-col>\n    <ion-col>\n      <ion-card>\n        <!-- <ion-card-header>\n          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>\n          <ion-card-title>Card Title</ion-card-title>\n        </ion-card-header> -->\n        <ion-card-content>\n          <ion-button color=\"primary\" expand=\"block\" color=\"warning\" routerLink=\"/list-user\">Ver Lista</ion-button>\n        </ion-card-content>\n      </ion-card>\n    </ion-col>\n  </ion-row>\n\n</ion-content>\n<!-- <ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"schedule\">\n      <ion-icon name=\"calendar\"></ion-icon>\n      <ion-label>Schedule</ion-label>\n      <ion-badge>6</ion-badge>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"speakers\">\n      <ion-icon name=\"person-circle\"></ion-icon>\n      <ion-label>Ver Lista</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"add\" expand=\"full\" color=\"primary\" (click)=\"create()\">\n      <ion-icon name=\"add\"></ion-icon>\n      <ion-label>Nuevo registro</ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n</ion-tabs> -->");
 
 /***/ }),
 
@@ -141,8 +141,8 @@ let DashboardPage = class DashboardPage {
     create() {
         this.navCtrl.navigateForward('user');
     }
-    listUSer() {
-        // this.navCtrl.navigateForward('');
+    listUser() {
+        this.navCtrl.navigateForward('list-user');
     }
 };
 DashboardPage.ctorParameters = () => [
@@ -193,24 +193,13 @@ let AuthService = class AuthService {
         this.isLoggedIn = false;
     }
     login(email, password) {
-        // const headers = new HttpHeaders();
-        // headers.append('Content-Type', 'application/json');
-        // const headers = new HttpHeaders({
-        //   "Content-Type": "application/json", 
-        //   'Accept': 'application/json, text/plain',
-        //   "cache-control": "no-cache", 
-        //   "Access-Control-Allow-Origin": "*", 
-        //   "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Accept, Authorization, X-Request-With, Access-Control-Request-Method, Access-Control-Request-Headers",
-        //   "Access-Control-Allow-Credentials" : "true",
-        //   "Access-Control-Allow-Methods" : "GET, POST, DELETE, PUT, OPTIONS, TRACE, PATCH, CONNECT",  
-        //   });
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*',
-            'Accept': 'application/json, text/plain'
-        });
-        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
+        const httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json'
+            })
+        };
+        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
             this.storage.setItem('token', token)
                 .then(() => {
                 console.log('Token Stored');

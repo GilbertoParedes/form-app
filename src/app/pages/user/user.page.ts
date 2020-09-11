@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { EnvService } from 'src/app/services/env.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -44,7 +45,28 @@ export class UserPage implements OnInit {
   }
 
   save(form: NgForm) {
-    console.log(form);
+    console.log(form.value);
+    // let data = [form.value];
+    // cabeceras de peticiones
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json, text/plain',
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.post(this.env.API_URL + 'api/auth/afiliados', 
+      { 
+        name: form.value.name, apellido: form.value.apellido, telefono: form.value.telefono, genero: form.value.genero,
+        image_ine: form.value.image, edo_civil: form.value.estado_civ, fecha_nacimiento: form.value.fecha,
+        lugar_nacimiento: form.value.nacimiento, casa_propia: form.value.casa_propia
+      }
+    ).subscribe(res => {
+      console.log(res)
+    }, (err) =>{
+      console.log(err)
+    })
+
   }
 
 }

@@ -120,15 +120,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var src_app_services_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! src/app/services/alert.service */
     "./src/app/services/alert.service.ts");
+    /* harmony import */
+
+
+    var _services_env_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../../../services/env.service */
+    "./src/app/services/env.service.ts");
 
     var LoginPage = /*#__PURE__*/function () {
-      function LoginPage(modalController, authService, navCtrl, alertService) {
+      function LoginPage(modalController, authService, navCtrl, alertService, env) {
         _classCallCheck(this, LoginPage);
 
         this.modalController = modalController;
         this.authService = authService;
         this.navCtrl = navCtrl;
         this.alertService = alertService;
+        this.env = env;
       }
 
       _createClass(LoginPage, [{
@@ -182,6 +189,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             _this.alertService.presentToast("Sesión Iniciada");
           }, function (error) {
             console.log(error);
+
+            var toast = _this.alertService.presentToast(error.message);
           }, function () {
             _this.dismissLogin();
 
@@ -202,6 +211,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]
       }, {
         type: src_app_services_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"]
+      }, {
+        type: _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"]
       }];
     };
 
@@ -555,29 +566,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function login(email, password) {
           var _this3 = this;
 
-          // const headers = new HttpHeaders();
-          // headers.append('Content-Type', 'application/json');
-          // const headers = new HttpHeaders({
-          //   "Content-Type": "application/json", 
-          //   'Accept': 'application/json, text/plain',
-          //   "cache-control": "no-cache", 
-          //   "Access-Control-Allow-Origin": "*", 
-          //   "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Accept, Authorization, X-Request-With, Access-Control-Request-Method, Access-Control-Request-Headers",
-          //   "Access-Control-Allow-Credentials" : "true",
-          //   "Access-Control-Allow-Methods" : "GET, POST, DELETE, PUT, OPTIONS, TRACE, PATCH, CONNECT",  
-          //   });
-          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*',
-            'Accept': 'application/json, text/plain'
-          });
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              'Accept': 'application/json, text/plain',
+              'Content-Type': 'application/json'
+            })
+          };
           return this.http.post(this.env.API_URL + 'api/auth/login', {
             email: email,
             password: password
-          }, {
-            headers: headers
-          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (token) {
+          }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (token) {
             _this3.storage.setItem('token', token).then(function () {
               console.log('Token Stored');
             }, function (error) {

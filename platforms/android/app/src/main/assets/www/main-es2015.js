@@ -340,6 +340,10 @@ const routes = [
         path: 'users',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-user-user-module */ "pages-user-user-module").then(__webpack_require__.bind(null, /*! ./pages/user/user.module */ "./src/app/pages/user/user.module.ts")).then(m => m.UserPageModule)
     },
+    {
+        path: 'list-user',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-user-list-user-list-user-module */ "list-user-list-user-module").then(__webpack_require__.bind(null, /*! ./pages/user/list-user/list-user.module */ "./src/app/pages/user/list-user/list-user.module.ts")).then(m => m.ListUserPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };

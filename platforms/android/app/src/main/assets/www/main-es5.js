@@ -231,6 +231,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.UserPageModule;
         });
       }
+    }, {
+      path: 'list-user',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-user-list-user-list-user-module */
+        "list-user-list-user-module").then(__webpack_require__.bind(null,
+        /*! ./pages/user/list-user/list-user.module */
+        "./src/app/pages/user/list-user/list-user.module.ts")).then(function (m) {
+          return m.ListUserPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {

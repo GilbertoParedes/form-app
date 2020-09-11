@@ -12,6 +12,7 @@
         <ion-icon name="camera-outline"></ion-icon>  Tomar Foto INE
       </ion-button>
       <ion-img [src]="imageIne"></ion-img>
+      <ion-input [ngModel]="imageIne" type="hidden" name="image"></ion-input>
     </ion-card-content>
       <ion-item>
         <ion-label color="primary" position="floating">Nombre:</ion-label>
@@ -47,7 +48,7 @@
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="floating">Lugar nacimiento</ion-label>
-        <ion-input ngModel type="text" name="lugar_nacimiento"></ion-input>
+        <ion-input ngModel type="text" name="nacimiento"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="floating">Casa propia</ion-label>
