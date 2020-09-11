@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Dashboard</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf=\"user != undefined\">\n      Welcome {{ user[\"first_name\"]  }} {{ user[\"last_name\"]  }}\n  </div>\n  <ion-row>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"primary\" (click)=\"create()\">Crear Nuevo</ion-button>\n    </ion-col>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"danger\" (click)=\"register()\">Ver Lista</ion-button>\n    </ion-col>\n  </ion-row>\n\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Dashboard</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf=\"user != undefined\">\n      Welcome {{ user[\"first_name\"]  }} {{ user[\"last_name\"]  }}\n  </div>\n  <ion-row>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"primary\" (click)=\"create()\">Nueva Persona</ion-button>\n    </ion-col>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"danger\" routerLink=\"/list-user\">Ver Personas</ion-button>\n    </ion-col>\n  </ion-row>\n\n</ion-content>";
     /***/
   },
 
@@ -251,8 +251,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.navCtrl.navigateForward('user');
         }
       }, {
-        key: "listUSer",
-        value: function listUSer() {// this.navCtrl.navigateForward('');
+        key: "listUser",
+        value: function listUser() {
+          this.navCtrl.navigateForward('list-user');
         }
       }]);
 
@@ -352,10 +353,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function login(email, password) {
           var _this2 = this;
 
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              'Accept': 'application/json, text/plain',
+              'Content-Type': 'application/json'
+            })
+          };
           return this.http.post(this.env.API_URL + 'api/auth/login', {
             email: email,
             password: password
-          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (token) {
+          }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (token) {
             _this2.storage.setItem('token', token).then(function () {
               console.log('Token Stored');
             }, function (error) {
@@ -481,7 +488,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var EnvService = function EnvService() {
       _classCallCheck(this, EnvService);
 
-      this.API_URL = 'http://apiform.test/';
+      this.API_URL = 'http://api.pormibahia.org/';
     };
 
     EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

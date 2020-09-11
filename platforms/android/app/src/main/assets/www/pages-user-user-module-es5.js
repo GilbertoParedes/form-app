@@ -72,6 +72,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var routes = [{
       path: '',
       component: _user_page__WEBPACK_IMPORTED_MODULE_3__["UserPage"]
+    }, {
+      path: 'list-user',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | list-user-list-user-module */
+        "list-user-list-user-module").then(__webpack_require__.bind(null,
+        /*! ./list-user/list-user.module */
+        "./src/app/pages/user/list-user/list-user.module.ts")).then(function (m) {
+          return m.ListUserPageModule;
+        });
+      }
     }];
 
     var UserPageRoutingModule = function UserPageRoutingModule() {
@@ -335,7 +346,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var EnvService = function EnvService() {
       _classCallCheck(this, EnvService);
 
-      this.API_URL = 'http://apiform.test/';
+      this.API_URL = 'http://api.pormibahia.org/';
     };
 
     EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

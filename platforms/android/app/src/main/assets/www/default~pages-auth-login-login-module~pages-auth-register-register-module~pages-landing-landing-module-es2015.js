@@ -55,6 +55,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _register_register_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../register/register.page */ "./src/app/pages/auth/register/register.page.ts");
 /* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var src_app_services_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/alert.service */ "./src/app/services/alert.service.ts");
+/* harmony import */ var _services_env_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../services/env.service */ "./src/app/services/env.service.ts");
+
 
 
 
@@ -62,11 +64,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-    constructor(modalController, authService, navCtrl, alertService) {
+    constructor(modalController, authService, navCtrl, alertService, env) {
         this.modalController = modalController;
         this.authService = authService;
         this.navCtrl = navCtrl;
         this.alertService = alertService;
+        this.env = env;
     }
     ngOnInit() {
     }
@@ -89,6 +92,7 @@ let LoginPage = class LoginPage {
             this.alertService.presentToast("Sesión Iniciada");
         }, error => {
             console.log(error);
+            let toast = this.alertService.presentToast(error.message);
         }, () => {
             this.dismissLogin();
             this.navCtrl.navigateRoot('/dashboard');
@@ -99,7 +103,8 @@ LoginPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
     { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
-    { type: src_app_services_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"] }
+    { type: src_app_services_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"] },
+    { type: _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"] }
 ];
 LoginPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -280,7 +285,13 @@ let AuthService = class AuthService {
         this.isLoggedIn = false;
     }
     login(email, password) {
-        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
+        const httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json'
+            })
+        };
+        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
             this.storage.setItem('token', token)
                 .then(() => {
                 console.log('Token Stored');
@@ -360,7 +371,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let EnvService = class EnvService {
     constructor() {
-        this.API_URL = 'http://apiform.test/';
+        this.API_URL = 'http://api.pormibahia.org/';
     }
 };
 EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

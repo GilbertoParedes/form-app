@@ -186,7 +186,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
     var routes = [{
-      path: 'landing',
+      path: '',
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-landing-landing-module */
@@ -228,7 +228,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
       }
     }, {
-      path: '',
+      path: 'user',
       loadChildren: function loadChildren() {
         return __webpack_require__.e(
         /*! import() | pages-user-user-module */
@@ -236,6 +236,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /*! ./pages/user/user.module */
         "./src/app/pages/user/user.module.ts")).then(function (m) {
           return m.UserPageModule;
+        });
+      }
+    }, {
+      path: 'list-user',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-user-list-user-list-user-module */
+        "list-user-list-user-module").then(__webpack_require__.bind(null,
+        /*! ./pages/user/list-user/list-user.module */
+        "./src/app/pages/user/list-user/list-user.module.ts")).then(function (m) {
+          return m.ListUserPageModule;
         });
       }
     }];

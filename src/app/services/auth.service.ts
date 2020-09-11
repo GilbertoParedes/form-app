@@ -17,8 +17,16 @@ export class AuthService {
     private env: EnvService,
   ) { }
   login(email: String, password: String) {
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json, text/plain',
+        'Content-Type': 'application/json'
+      })
+    };
+
     return this.http.post(this.env.API_URL + 'api/auth/login',
-      {email: email, password: password}
+      {email: email, password: password}, httpOptions
     ).pipe(
       tap(token => {
         this.storage.setItem('token', token)

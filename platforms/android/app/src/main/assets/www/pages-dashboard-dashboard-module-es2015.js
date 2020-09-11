@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Dashboard</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf=\"user != undefined\">\n      Welcome {{ user[\"first_name\"]  }} {{ user[\"last_name\"]  }}\n  </div>\n  <ion-row>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"primary\" (click)=\"create()\">Crear Nuevo</ion-button>\n    </ion-col>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"danger\" (click)=\"register()\">Ver Lista</ion-button>\n    </ion-col>\n  </ion-row>\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Dashboard</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf=\"user != undefined\">\n      Welcome {{ user[\"first_name\"]  }} {{ user[\"last_name\"]  }}\n  </div>\n  <ion-row>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"primary\" (click)=\"create()\">Nueva Persona</ion-button>\n    </ion-col>\n    <ion-col>\n      <ion-button color=\"primary\" expand=\"full\" color=\"danger\" routerLink=\"/list-user\">Ver Personas</ion-button>\n    </ion-col>\n  </ion-row>\n\n</ion-content>");
 
 /***/ }),
 
@@ -141,8 +141,8 @@ let DashboardPage = class DashboardPage {
     create() {
         this.navCtrl.navigateForward('user');
     }
-    listUSer() {
-        // this.navCtrl.navigateForward('');
+    listUser() {
+        this.navCtrl.navigateForward('list-user');
     }
 };
 DashboardPage.ctorParameters = () => [
@@ -192,7 +192,13 @@ let AuthService = class AuthService {
         this.isLoggedIn = false;
     }
     login(email, password) {
-        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
+        const httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json'
+            })
+        };
+        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
             this.storage.setItem('token', token)
                 .then(() => {
                 console.log('Token Stored');
@@ -272,7 +278,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let EnvService = class EnvService {
     constructor() {
-        this.API_URL = 'http://apiform.test/';
+        this.API_URL = 'http://api.pormibahia.org/';
     }
 };
 EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

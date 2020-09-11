@@ -315,7 +315,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [
     {
-        path: 'landing',
+        path: '',
         loadChildren: () => Promise.all(/*! import() | pages-landing-landing-module */[__webpack_require__.e("default~pages-auth-login-login-module~pages-auth-register-register-module~pages-landing-landing-module"), __webpack_require__.e("pages-landing-landing-module")]).then(__webpack_require__.bind(null, /*! ./pages/landing/landing.module */ "./src/app/pages/landing/landing.module.ts")).then(m => m.LandingPageModule)
     },
     { path: 'landing', loadChildren: './pages/landing/landing.module#LandingPageModule' },
@@ -337,8 +337,12 @@ const routes = [
         loadChildren: () => __webpack_require__.e(/*! import() | pages-dashboard-dashboard-module */ "pages-dashboard-dashboard-module").then(__webpack_require__.bind(null, /*! ./pages/dashboard/dashboard.module */ "./src/app/pages/dashboard/dashboard.module.ts")).then(m => m.DashboardPageModule)
     },
     {
-        path: '',
+        path: 'user',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-user-user-module */ "pages-user-user-module").then(__webpack_require__.bind(null, /*! ./pages/user/user.module */ "./src/app/pages/user/user.module.ts")).then(m => m.UserPageModule)
+    },
+    {
+        path: 'list-user',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-user-list-user-list-user-module */ "list-user-list-user-module").then(__webpack_require__.bind(null, /*! ./pages/user/list-user/list-user.module */ "./src/app/pages/user/list-user/list-user.module.ts")).then(m => m.ListUserPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {

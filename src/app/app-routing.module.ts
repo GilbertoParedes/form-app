@@ -4,7 +4,7 @@ import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'landing',
+    path: '',
     loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
   },
   { path: 'landing', loadChildren: './pages/landing/landing.module#LandingPageModule' },  
@@ -29,8 +29,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
   {
-    path: '',
+    path: 'user',
     loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
+  },
+  {
+    path: 'list-user',
+    loadChildren: () => import('./pages/user/list-user/list-user.module').then( m => m.ListUserPageModule)
   },
 ];
 @NgModule({

@@ -238,6 +238,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.UserPageModule;
         });
       }
+    }, {
+      path: 'list-user',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-user-list-user-list-user-module */
+        "list-user-list-user-module").then(__webpack_require__.bind(null,
+        /*! ./pages/user/list-user/list-user.module */
+        "./src/app/pages/user/list-user/list-user.module.ts")).then(function (m) {
+          return m.ListUserPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -456,6 +467,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! @ionic-native/native-storage/ngx */
     "./node_modules/@ionic-native/native-storage/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! @ionic-native/camera/ngx */
+    "./node_modules/@ionic-native/camera/__ivy_ngcc__/ngx/index.js");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
@@ -468,7 +485,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
-      }, _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_10__["NativeStorage"]],
+      }, _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_10__["NativeStorage"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"]],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
     })], AppModule);
     /***/
@@ -571,7 +588,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! /home/backend/Documentos/code/form-app/src/main.ts */
+    /*! /home/zerocool/Documentos/code/form-app/src/main.ts */
     "./src/main.ts");
     /***/
   }
