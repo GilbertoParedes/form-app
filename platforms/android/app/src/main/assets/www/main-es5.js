@@ -185,19 +185,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
-    var routes = [{
-      path: 'landing',
-      loadChildren: function loadChildren() {
-        return Promise.all(
-        /*! import() | pages-landing-landing-module */
-        [__webpack_require__.e("default~pages-auth-login-login-module~pages-auth-register-register-module~pages-landing-landing-module"), __webpack_require__.e("pages-landing-landing-module")]).then(__webpack_require__.bind(null,
-        /*! ./pages/landing/landing.module */
-        "./src/app/pages/landing/landing.module.ts")).then(function (m) {
-          return m.LandingPageModule;
-        });
-      }
-    }, {
-      path: 'landing',
+    var routes = [// {
+    //   path: '',
+    //   loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
+    // },
+    {
+      path: '',
       loadChildren: './pages/landing/landing.module#LandingPageModule'
     }, {
       path: 'login',
@@ -228,7 +221,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
       }
     }, {
-      path: '',
+      path: 'users',
       loadChildren: function loadChildren() {
         return __webpack_require__.e(
         /*! import() | pages-user-user-module */

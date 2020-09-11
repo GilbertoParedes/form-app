@@ -3,11 +3,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-  {
-    path: 'landing',
-    loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
-  },
-  { path: 'landing', loadChildren: './pages/landing/landing.module#LandingPageModule' },  
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
+  // },
+  { path: '', loadChildren: './pages/landing/landing.module#LandingPageModule' },  
   { path: 'login', loadChildren: './pages/auth/login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './pages/auth/register/register.module#RegisterPageModule' },
 
@@ -29,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
   {
-    path: '',
+    path: 'users',
     loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
   },
 ];

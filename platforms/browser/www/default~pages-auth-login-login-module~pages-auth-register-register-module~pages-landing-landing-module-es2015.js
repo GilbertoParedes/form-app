@@ -85,6 +85,7 @@ let LoginPage = class LoginPage {
         });
     }
     login(form) {
+        console.log(form.value.email, form.value.password);
         this.authService.login(form.value.email, form.value.password).subscribe(data => {
             this.alertService.presentToast("Sesión Iniciada");
         }, error => {
@@ -272,6 +273,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import { HTTP } from '@ionic-native/http/ngx';
 let AuthService = class AuthService {
     constructor(http, storage, env) {
         this.http = http;
@@ -280,7 +282,27 @@ let AuthService = class AuthService {
         this.isLoggedIn = false;
     }
     login(email, password) {
-        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
+        // const headers = new HttpHeaders();
+        // headers.append('Content-Type', 'application/json');
+        // const headers = new HttpHeaders({
+        //   "Content-Type": "application/json", 
+        //   'Accept': 'application/json, text/plain',
+        //   "cache-control": "no-cache", 
+        //   "Access-Control-Allow-Origin": "*", 
+        //   "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Accept, Authorization, X-Request-With, Access-Control-Request-Method, Access-Control-Request-Headers",
+        //   "Access-Control-Allow-Credentials" : "true",
+        //   "Access-Control-Allow-Methods" : "GET, POST, DELETE, PUT, OPTIONS, TRACE, PATCH, CONNECT",  
+        //   });
+        // const headers = new HttpHeaders({
+        //   'Content-Type': 'application/json',
+        //   'Access-Control-Allow-Origin': '*',
+        //   'Access-Control-Allow-Headers': '*',
+        //   'Accept': 'application/json, text/plain'
+        // });
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+            'Content-Type': 'application/json',
+        });
+        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
             this.storage.setItem('token', token)
                 .then(() => {
                 console.log('Token Stored');

@@ -177,6 +177,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function login(form) {
           var _this = this;
 
+          console.log(form.value.email, form.value.password);
           this.authService.login(form.value.email, form.value.password).subscribe(function (data) {
             _this.alertService.presentToast("Sesión Iniciada");
           }, function (error) {
@@ -536,7 +537,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var _env_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./env.service */
-    "./src/app/services/env.service.ts");
+    "./src/app/services/env.service.ts"); // import { HTTP } from '@ionic-native/http/ngx';
+
 
     var AuthService = /*#__PURE__*/function () {
       function AuthService(http, storage, env) {
@@ -553,9 +555,31 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function login(email, password) {
           var _this3 = this;
 
+          // const headers = new HttpHeaders();
+          // headers.append('Content-Type', 'application/json');
+          // const headers = new HttpHeaders({
+          //   "Content-Type": "application/json", 
+          //   'Accept': 'application/json, text/plain',
+          //   "cache-control": "no-cache", 
+          //   "Access-Control-Allow-Origin": "*", 
+          //   "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Accept, Authorization, X-Request-With, Access-Control-Request-Method, Access-Control-Request-Headers",
+          //   "Access-Control-Allow-Credentials" : "true",
+          //   "Access-Control-Allow-Methods" : "GET, POST, DELETE, PUT, OPTIONS, TRACE, PATCH, CONNECT",  
+          //   });
+          // const headers = new HttpHeaders({
+          //   'Content-Type': 'application/json',
+          //   'Access-Control-Allow-Origin': '*',
+          //   'Access-Control-Allow-Headers': '*',
+          //   'Accept': 'application/json, text/plain'
+          // });
+          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+            'Content-Type': 'application/json'
+          });
           return this.http.post(this.env.API_URL + 'api/auth/login', {
             email: email,
             password: password
+          }, {
+            headers: headers
           }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (token) {
             _this3.storage.setItem('token', token).then(function () {
               console.log('Token Stored');

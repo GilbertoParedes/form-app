@@ -314,11 +314,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    {
-        path: 'landing',
-        loadChildren: () => Promise.all(/*! import() | pages-landing-landing-module */[__webpack_require__.e("default~pages-auth-login-login-module~pages-auth-register-register-module~pages-landing-landing-module"), __webpack_require__.e("pages-landing-landing-module")]).then(__webpack_require__.bind(null, /*! ./pages/landing/landing.module */ "./src/app/pages/landing/landing.module.ts")).then(m => m.LandingPageModule)
-    },
-    { path: 'landing', loadChildren: './pages/landing/landing.module#LandingPageModule' },
+    // {
+    //   path: '',
+    //   loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
+    // },
+    { path: '', loadChildren: './pages/landing/landing.module#LandingPageModule' },
     { path: 'login', loadChildren: './pages/auth/login/login.module#LoginPageModule' },
     { path: 'register', loadChildren: './pages/auth/register/register.module#RegisterPageModule' },
     // { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule', canActivate: [AuthGuard] },
@@ -337,7 +337,7 @@ const routes = [
         loadChildren: () => __webpack_require__.e(/*! import() | pages-dashboard-dashboard-module */ "pages-dashboard-dashboard-module").then(__webpack_require__.bind(null, /*! ./pages/dashboard/dashboard.module */ "./src/app/pages/dashboard/dashboard.module.ts")).then(m => m.DashboardPageModule)
     },
     {
-        path: '',
+        path: 'users',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-user-user-module */ "pages-user-user-module").then(__webpack_require__.bind(null, /*! ./pages/user/user.module */ "./src/app/pages/user/user.module.ts")).then(m => m.UserPageModule)
     },
 ];
