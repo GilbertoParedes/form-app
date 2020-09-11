@@ -564,10 +564,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function login(email, password) {
           var _this3 = this;
 
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              'Accept': 'application/json, text/plain',
+              'Content-Type': 'application/json'
+            })
+          };
           return this.http.post(this.env.API_URL + 'api/auth/login', {
             email: email,
             password: password
-          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (token) {
+          }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (token) {
             _this3.storage.setItem('token', token).then(function () {
               console.log('Token Stored');
             }, function (error) {

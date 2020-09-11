@@ -285,7 +285,13 @@ let AuthService = class AuthService {
         this.isLoggedIn = false;
     }
     login(email, password) {
-        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
+        const httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json'
+            })
+        };
+        return this.http.post(this.env.API_URL + 'api/auth/login', { email: email, password: password }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(token => {
             this.storage.setItem('token', token)
                 .then(() => {
                 console.log('Token Stored');
