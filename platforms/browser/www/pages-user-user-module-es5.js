@@ -310,50 +310,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       "./src/app/pages/user/user.page.scss"))["default"]]
     })], UserPage);
     /***/
-  },
-
-  /***/
-  "./src/app/services/env.service.ts":
-  /*!*****************************************!*\
-    !*** ./src/app/services/env.service.ts ***!
-    \*****************************************/
-
-  /*! exports provided: EnvService */
-
-  /***/
-  function srcAppServicesEnvServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "EnvService", function () {
-      return EnvService;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-
-    var EnvService = function EnvService() {
-      _classCallCheck(this, EnvService);
-
-      this.API_URL = 'http://api.pormibahia.org/';
-    };
-
-    EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    })], EnvService);
-    /***/
   }
 }]);
 //# sourceMappingURL=pages-user-user-module-es5.js.map
