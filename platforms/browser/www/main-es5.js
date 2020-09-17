@@ -143,7 +143,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane>\n    <ion-menu>\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-item (click)=\"logout()\">\n            <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n            <ion-label>\n              Logout\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app> -->\n";
+    __webpack_exports__["default"] = "<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n  <ion-split-pane>\n    <ion-menu>\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-item (click)=\"logout()\">\n            <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n            <ion-label>\n              Logout\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app> -->\n<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n";
     /***/
   },
 
@@ -185,19 +185,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
-    var routes = [{
+    var routes = [// {
+    //   path: '',
+    //   loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
+    // },
+    {
       path: '',
-      loadChildren: function loadChildren() {
-        return Promise.all(
-        /*! import() | pages-landing-landing-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-landing-landing-module")]).then(__webpack_require__.bind(null,
-        /*! ./pages/landing/landing.module */
-        "./src/app/pages/landing/landing.module.ts")).then(function (m) {
-          return m.LandingPageModule;
-        });
-      }
-    }, {
-      path: 'landing',
       loadChildren: './pages/landing/landing.module#LandingPageModule'
     }, {
       path: 'login',
@@ -670,7 +663,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _env_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./env.service */
-    "./src/app/services/env.service.ts");
+    "./src/app/services/env.service.ts"); // import { HTTP } from '@ionic-native/http/ngx';
+
 
     var AuthService = /*#__PURE__*/function () {
       function AuthService(http, storage, env) {

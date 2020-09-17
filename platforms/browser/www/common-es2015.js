@@ -525,6 +525,7 @@ let LoginPage = class LoginPage {
         });
     }
     login(form) {
+        console.log(form.value.email, form.value.password);
         this.authService.login(form.value.email, form.value.password).subscribe(data => {
             this.alertService.presentToast("Sesión Iniciada");
         }, error => {

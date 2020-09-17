@@ -841,6 +841,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: function login(form) {
           var _this = this;
 
+          console.log(form.value.email, form.value.password);
           this.authService.login(form.value.email, form.value.password).subscribe(function (data) {
             _this.alertService.presentToast("Sesión Iniciada");
           }, function (error) {

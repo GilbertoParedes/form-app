@@ -39,6 +39,7 @@ export class LoginPage implements OnInit {
   }
 
   login(form: NgForm) {
+    console.log(form.value.email, form.value.password)
     this.authService.login(form.value.email, form.value.password).subscribe(
       data => {
         this.alertService.presentToast("Sesión Iniciada");

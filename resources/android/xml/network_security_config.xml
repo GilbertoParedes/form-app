@@ -2,7 +2,9 @@
 <network-security-config>
   <base-config cleartextTrafficPermitted="true" />
   <domain includeSubdomains = "true"> localhost </domain> 
-  <domain includeSubdomains = "true">http://api.pormibahia.org/</domain> 
+  <domain includeSubdomains = "true">http://api.pormibahia.org/</domain>
+  <domain includeSubdomains = "true">http://apiform.test/</domain>
+  <domain includeSubdomains = "true">http://apiform.test:80/</domain>
 </network-security-config>
 <!-- <network-security-config>
     <domain-config cleartextTrafficPermitted="true">

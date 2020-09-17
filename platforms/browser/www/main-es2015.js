@@ -293,7 +293,7 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-split-pane>\n    <ion-menu>\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-item (click)=\"logout()\">\n            <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n            <ion-label>\n              Logout\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app> -->\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n  <ion-split-pane>\n    <ion-menu>\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-item (click)=\"logout()\">\n            <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n            <ion-label>\n              Logout\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app> -->\n<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n");
 
 /***/ }),
 
@@ -314,11 +314,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    {
-        path: '',
-        loadChildren: () => Promise.all(/*! import() | pages-landing-landing-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-landing-landing-module")]).then(__webpack_require__.bind(null, /*! ./pages/landing/landing.module */ "./src/app/pages/landing/landing.module.ts")).then(m => m.LandingPageModule)
-    },
-    { path: 'landing', loadChildren: './pages/landing/landing.module#LandingPageModule' },
+    // {
+    //   path: '',
+    //   loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
+    // },
+    { path: '', loadChildren: './pages/landing/landing.module#LandingPageModule' },
     { path: 'login', loadChildren: './pages/auth/login/login.module#LoginPageModule' },
     { path: 'register', loadChildren: './pages/auth/register/register.module#RegisterPageModule' },
     // { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule', canActivate: [AuthGuard] },
@@ -571,6 +571,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import { HTTP } from '@ionic-native/http/ngx';
 let AuthService = class AuthService {
     constructor(http, storage, env) {
         this.http = http;

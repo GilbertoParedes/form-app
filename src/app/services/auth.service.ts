@@ -4,6 +4,7 @@ import { tap } from 'rxjs/operators';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { EnvService } from './env.service';
 import { User } from '../models/user';
+// import { HTTP } from '@ionic-native/http/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -44,14 +45,14 @@ export class AuthService {
   }
   register(fName: String, lName: String, email: String, password: String) {
     return this.http.post(this.env.API_URL + 'api/auth/register',
-      {fName: fName, lName: lName, email: email, password: password}
+      {fName: fName, lName: lName, email: email, password: password},
     )
   }
   logout() {
     const headers = new HttpHeaders({
       'Authorization': this.token["token_type"]+" "+this.token["access_token"]
     });
-    return this.http.get(this.env.API_URL + 'api/auth/logout', { headers: headers })
+    return this.http.get(this.env.API_URL + 'api/auth/logout', { headers: headers },)
     .pipe(
       tap(data => {
         this.storage.remove("token");

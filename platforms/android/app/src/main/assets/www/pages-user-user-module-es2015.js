@@ -195,7 +195,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let EnvService = class EnvService {
     constructor() {
-        this.API_URL = 'http://api.pormibahia.org/';
+        this.API_URL = 'http://apiform.test/';
     }
 };
 EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

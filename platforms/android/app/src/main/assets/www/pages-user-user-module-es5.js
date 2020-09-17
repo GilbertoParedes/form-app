@@ -347,7 +347,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var EnvService = function EnvService() {
       _classCallCheck(this, EnvService);
 
-      this.API_URL = 'http://api.pormibahia.org/';
+      this.API_URL = 'http://apiform.test/';
     };
 
     EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
