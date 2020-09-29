@@ -40,7 +40,6 @@ export class UserPage implements OnInit {
   }
 
   save(form: NgForm) {
-    //console.log(form.value);
     
     this.afiliadoService.register(form.value);
 

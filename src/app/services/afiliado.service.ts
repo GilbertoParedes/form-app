@@ -3,6 +3,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { EnvService } from 'src/app/services/env.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,9 @@ export class AfiliadoService {
 
   register(form: Object) {
 
-    console.log(form);
     this.token = this.storage.getItem('token').then(token => {
-    let data = form['name'];
-    console.log(data);
+    // let data = form['name'];
+
       this.token = token;
     
       const headers = new HttpHeaders({
@@ -32,12 +32,15 @@ export class AfiliadoService {
         'Authorization': this.token["token_type"]+" "+this.token["access_token"]
       });
   
-      // name: form.value.name, apellido: form.value.apellido, telefono: form.value.telefono, genero: form.value.genero,
-      //     image_ine: form.value.image, edo_civil: form.value.estado_civ, fecha_nacimiento: form.value.fecha,
-      //     lugar_nacimiento: form.value.nacimiento, casa_propia: form.value.casa_propia
-  
       return this.http.post(this.env.API_URL + 'api/auth/afiliados', 
-        {  }, { headers: headers }
+        { name: form['name'], apellido: form['apellido'],
+      telefono: form['telefono'], sexo: form['genero'], image_ine: form['image'],
+      estado_civil: form['estado_civ'], fecha_nacimiento: form['f_nacimiento'],
+      lugar_nacimiento: form['l_nacimiento'], estado_vivienda: form['casa_propia'],
+      tiempo_viviendo: form['tiempo_viviendo'], calle: form['calle'], colonia: form['colonia'],
+      dep_menores: form['dep_menores'], dep_tercera_edad: form['dep_mayores'],
+      vivienda_compartida: form['vivienda_compartida']
+      }, { headers: headers }
       ).subscribe(
         data => {
           console.log(data);
@@ -48,4 +51,23 @@ export class AfiliadoService {
       );
     })
   }
+
+  afiliados(){
+    this.token = this.storage.getItem('token').then(token => {
+      // let data = form['name'];
+  
+        this.token = token;
+      
+        const headers = new HttpHeaders({
+          'Accept': 'application/json, text/plain',
+          'Content-Type': 'application/json',
+          'Authorization': this.token["token_type"]+" "+this.token["access_token"]
+        });
+   
+    return this.http.get(this.env.API_URL + 'api/auth/afiliados', { headers: headers })
+    .pipe(
+      tap(data => {
+        return data;
+      })
+    )
 }

@@ -366,10 +366,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function register(form) {
           var _this2 = this;
 
-          console.log(form);
           this.token = this.storage.getItem('token').then(function (token) {
-            var data = form['name'];
-            console.log(data);
+            // let data = form['name'];
             _this2.token = token;
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
               'Accept': 'application/json, text/plain',
@@ -379,7 +377,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             //     image_ine: form.value.image, edo_civil: form.value.estado_civ, fecha_nacimiento: form.value.fecha,
             //     lugar_nacimiento: form.value.nacimiento, casa_propia: form.value.casa_propia
 
-            return _this2.http.post(_this2.env.API_URL + 'api/auth/afiliados', {}, {
+            return _this2.http.post(_this2.env.API_URL + 'api/auth/afiliados', {
+              name: form['name'],
+              apellido: form['apellido'],
+              telefono: form['telefono'],
+              sexo: form['genero'],
+              image_ine: form['image'],
+              estado_civil: form['estado_civ'],
+              fecha_nacimiento: form['f_nacimiento'],
+              lugar_nacimiento: form['l_nacimiento'],
+              estado_vivienda: form['casa_propia'],
+              tiempo_viviendo: form['tiempo_viviendo'],
+              calle: form['calle'],
+              colonia: form['colonia'],
+              dep_menores: form['dep_menores'],
+              dep_tercera_edad: form['dep_mayores'],
+              vivienda_compartida: form['vivienda_compartida']
+            }, {
               headers: headers
             }).subscribe(function (data) {
               console.log(data);
