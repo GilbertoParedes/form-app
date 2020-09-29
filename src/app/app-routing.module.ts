@@ -8,6 +8,7 @@ const routes: Routes = [
   //   loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
   // },
   { path: '', loadChildren: './pages/landing/landing.module#LandingPageModule' },  
+
   { path: 'login', loadChildren: './pages/auth/login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './pages/auth/register/register.module#RegisterPageModule' },
 
@@ -29,8 +30,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
   {
-    path: 'users',
+    path: 'user',
     loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
+  },
+  {
+    path: 'list-user',
+    loadChildren: () => import('./pages/user/list-user/list-user.module').then( m => m.ListUserPageModule)
   },
 ];
 @NgModule({

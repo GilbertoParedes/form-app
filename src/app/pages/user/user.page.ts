@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { EnvService } from 'src/app/services/env.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { tap } from 'rxjs/operators';
+import { AfiliadoService } from '../../services/afiliado.service';
 
 @Component({
   selector: 'app-user',
@@ -11,15 +10,12 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit {
-  token:any = '';
   selected_genero:string;
   fecha:string;
   imageIne:string;
   constructor(
-    private http: HttpClient,
-    private storage: NativeStorage,
-    private env: EnvService,
     private camera: Camera,
+    private afiliadoService: AfiliadoService,
   ) { }
 
   ngOnInit() {
@@ -44,7 +40,9 @@ export class UserPage implements OnInit {
   }
 
   save(form: NgForm) {
-    console.log(form);
+    
+    this.afiliadoService.register(form.value);
+
   }
 
 }

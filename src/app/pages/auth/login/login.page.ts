@@ -4,7 +4,7 @@ import { RegisterPage } from '../register/register.page';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { AlertService } from 'src/app/services/alert.service';
-
+import { EnvService } from '../../../services/env.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,8 @@ export class LoginPage implements OnInit {
     private modalController: ModalController,
     private authService: AuthService,
     private navCtrl: NavController,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private env: EnvService,
   ) { }
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class LoginPage implements OnInit {
       },
       error => {
         console.log(error);
+        let toast = this.alertService.presentToast(error.message);
       },
       () => {
         this.dismissLogin();

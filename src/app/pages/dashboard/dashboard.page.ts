@@ -36,8 +36,8 @@ export class DashboardPage implements OnInit {
      this.navCtrl.navigateForward('user');
   }
 
-  listUSer(){
-    // this.navCtrl.navigateForward('');
+  listUser(){
+    this.navCtrl.navigateForward('list-user');
   }
 
 }
