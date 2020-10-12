@@ -234,12 +234,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'list-user',
       loadChildren: function loadChildren() {
-        return __webpack_require__.e(
+        return Promise.all(
         /*! import() | pages-user-list-user-list-user-module */
-        "common").then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~list-user-list-user-module~pages-user-list-user-list-user-module"), __webpack_require__.e("common")]).then(__webpack_require__.bind(null,
         /*! ./pages/user/list-user/list-user.module */
         "./src/app/pages/user/list-user/list-user.module.ts")).then(function (m) {
           return m.ListUserPageModule;
+        });
+      }
+    }, {
+      path: 'user-update',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-user-update-update-module */
+        "update-update-module").then(__webpack_require__.bind(null,
+        /*! ./pages/user/update/update.module */
+        "./src/app/pages/user/update/update.module.ts")).then(function (m) {
+          return m.UpdatePageModule;
         });
       }
     }];
@@ -922,7 +933,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! /home/backend/Documentos/code/form-app/src/main.ts */
+    /*! /home/zerocool/Documentos/code/form-app/src/main.ts */
     "./src/main.ts");
     /***/
   }

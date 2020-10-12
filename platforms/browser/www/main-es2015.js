@@ -342,7 +342,11 @@ const routes = [
     },
     {
         path: 'list-user',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-user-list-user-list-user-module */ "common").then(__webpack_require__.bind(null, /*! ./pages/user/list-user/list-user.module */ "./src/app/pages/user/list-user/list-user.module.ts")).then(m => m.ListUserPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-user-list-user-list-user-module */[__webpack_require__.e("default~list-user-list-user-module~pages-user-list-user-list-user-module"), __webpack_require__.e("common")]).then(__webpack_require__.bind(null, /*! ./pages/user/list-user/list-user.module */ "./src/app/pages/user/list-user/list-user.module.ts")).then(m => m.ListUserPageModule)
+    },
+    {
+        path: 'user-update',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-user-update-update-module */ "update-update-module").then(__webpack_require__.bind(null, /*! ./pages/user/update/update.module */ "./src/app/pages/user/update/update.module.ts")).then(m => m.UpdatePageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -740,7 +744,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/backend/Documentos/code/form-app/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/zerocool/Documentos/code/form-app/src/main.ts */"./src/main.ts");
 
 
 /***/ })

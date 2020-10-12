@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'list-user',
     loadChildren: () => import('./list-user/list-user.module').then( m => m.ListUserPageModule)
+  },
+  {
+    path: 'update',
+    loadChildren: () => import('./update/update.module').then( m => m.UpdatePageModule)
   }
 ];
 

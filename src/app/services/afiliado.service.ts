@@ -3,8 +3,10 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { EnvService } from 'src/app/services/env.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
-import { tap } from 'rxjs/operators';
 import { Afiliado } from '../models/afiliado';
+import { Observable, from } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -53,31 +55,27 @@ export class AfiliadoService {
     })
   }
 
-  afiliados(){
-    this.token = this.storage.getItem('token').then(token => {
-      this.token = token;
-      const headers = new HttpHeaders({
-        'Accept': 'application/json, text/plain',
-        'Content-Type': 'application/json',
-        'Authorization': this.token["token_type"]+" "+this.token["access_token"]
-      });
-      
-      return this.http.get<Afiliado>(this.env.API_URL + 'api/auth/afiliados', { headers: headers },)
-      .pipe(
-        tap(afiliado => {
-          console.log(afiliado);
-          return afiliado;
+  afiliados(): Observable<any> { 
+
+    return Observable
+        .fromPromise(this.storage.getItem('token'))
+        .flatMap(token => {
+            
+            this.token = token;
+
+            const headers = new HttpHeaders({
+              'Accept': 'application/json, text/plain',
+              'Content-Type': 'application/json',
+              'Authorization': this.token["token_type"]+" "+this.token["access_token"]
+            });
+            
+            return this.http.get(this.env.API_URL + 'api/auth/afiliados', { headers: headers })
+            // .pipe(
+            //   tap(afili => {
+            //     return afili;
+            //   })
+            // )
         })
-      )
-      // .subscribe(
-      //   data => {
-      //     console.log(data);
-      //   },
-      //   error => {
-      //     console.log(error);
-      //   }
-      // )
-    });
   }
 
 }
