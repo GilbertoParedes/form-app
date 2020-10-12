@@ -13,6 +13,8 @@ export class UserPage implements OnInit {
   selected_genero:string;
   fecha:string;
   imageIne:string;
+  imagePath: string = 'http://apiform.test/storage/images/';
+  
   constructor(
     private camera: Camera,
     private afiliadoService: AfiliadoService,
@@ -40,7 +42,7 @@ export class UserPage implements OnInit {
   }
 
   save(form: NgForm) {
-    
+    //console.log(form);
     this.afiliadoService.register(form.value);
 
   }

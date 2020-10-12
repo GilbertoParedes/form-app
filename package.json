@@ -30,6 +30,7 @@
     "browse": "0.4.0",
     "cordova-browser": "6.0.0",
     "rxjs": "~6.5.1",
+    "rxjs-compat": "^6.6.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

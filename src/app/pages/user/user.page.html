@@ -26,6 +26,23 @@
         <ion-label color="primary" position="floating">Teléfono:</ion-label>
         <ion-input ngModel type="tel" name="telefono"></ion-input>
       </ion-item>
+      <ion-row>
+        <ion-col size="7">
+        <ion-item>
+          <ion-label color="primary" position="floating">Cel:</ion-label>
+          <ion-input ngModel type="tel" name="celular"></ion-input>
+        </ion-item>
+        </ion-col>
+        <ion-col size="5">
+        <ion-item>
+          <ion-label>whatsapp</ion-label>
+          <ion-select [(ngModel)]="whatsapp" name="whatsapp" placeholder="Select One">
+            <ion-select-option value="si">Si</ion-select-option>
+            <ion-select-option value="no">No</ion-select-option>
+          </ion-select>
+        </ion-item>
+        </ion-col>
+      </ion-row>
       <ion-item>
         <ion-label>Sexo</ion-label>
         <ion-select [(ngModel)]="selected_genero" name="genero" placeholder="Select One">
@@ -60,7 +77,7 @@
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="floating">Tiempo viviendo</ion-label>
-        <ion-input ngModel type="number" name="tiempo_viviendo"></ion-input>
+        <ion-input ngModel type="text" name="tiempo_viviendo"></ion-input>
       </ion-item>
     <ion-item>
         <ion-label color="primary" position="floating">Calle</ion-label>
@@ -103,7 +120,11 @@
         </ion-item>
       <ion-item *ngIf="SelectedCompartenVivienda">
         <ion-label color="primary" position="floating">Cuantos</ion-label>
-        <ion-input ngModel type="number" name="cant_viviendo"></ion-input>
+        <ion-input ngModel type="string" name="cant_viviendo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="floating">Facebook</ion-label>
+        <ion-input ngModel type="text" name="facebook"></ion-input>
       </ion-item>
       <ion-row>
         <ion-col size="12">

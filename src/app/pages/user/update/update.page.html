@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/list-user"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Afiliado</ion-title>
+  </ion-toolbar>
+</ion-header>
+<form #form="ngForm" (ngSubmit)="save(form)" method="post">
+  <ion-card-content>
+    <ion-button ion-button color="success" icon-right expand="block" (click)="takePicture()">
+      <ion-icon name="camera-outline"></ion-icon>  Tomar Foto INE
+    </ion-button>
+    <ion-img *ngIf="imageIne != ''" [src]="imageIne"></ion-img>
+    <ion-img *ngIf="imageIne==''" src="{{imagePath+user.image_ine}}"></ion-img>
+    <ion-input [ngModel]="imageIne" type="hidden" name="image"></ion-input>
+  </ion-card-content>
+    <ion-item>
+      <ion-label color="primary" position="floating">Nombre:</ion-label>
+      <ion-input [ngModel]="user.name" type="text" name="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Apellido:</ion-label>
+      <ion-input [ngModel]="user.apellido" type="text" name="apellido"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Teléfono:</ion-label>
+      <ion-input [ngModel]="user.telefono" type="tel" name="telefono"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sexo</ion-label>
+      <ion-select [(ngModel)]="selected_genero" name="genero" placeholder="Select One">
+        <ion-select-option value="f">Mujer</ion-select-option>
+        <ion-select-option value="m">Hombre</ion-select-option>
+      </ion-select>
+    </ion-item>
+  <ion-item>
+    <ion-label>Estado Civil</ion-label>
+    <ion-select [(ngModel)]="selected_estado" name="estado_civ" placeholder="Select One">
+      <ion-select-option value="soltero">Solter@</ion-select-option>
+      <ion-select-option value="casado">Casad@</ion-select-option>
+      <ion-select-option value="divorciado">Divorciad@</ion-select-option>
+      <ion-select-option value="viudo">Viud@</ion-select-option>
+    </ion-select>
+  </ion-item>
+    <ion-item>
+      <ion-label position="floating"> Fecha de Nacimiento</ion-label> 
+      <ion-datetime displayFormat="DD MMMM YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Lugar nacimiento</ion-label>
+      <ion-input [ngModel]="user.lugar_nacimiento" type="text" name="l_nacimiento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Casa propia</ion-label>
+      <ion-select [(ngModel)]="selected_casa" name="casa_propia" placeholder="Elige uno">
+        <ion-select-option value="si">Si</ion-select-option>
+        <ion-select-option value="no">Rento</ion-select-option>
+        <ion-select-option value="no">Prestada</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Tiempo viviendo</ion-label>
+      <ion-input [ngModel]="user.tiempo_viviendo" type="number" name="tiempo_viviendo"></ion-input>
+    </ion-item>
+  <ion-item>
+      <ion-label color="primary" position="floating">Calle</ion-label>
+      <ion-input [ngModel]="user.calle" type="text" name="calle"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Colonia</ion-label>
+      <ion-input [ngModel]="user.colonia" type="text" name="colonia"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Dependientes menores de edad</ion-label>
+        <ion-select [(ngModel)]="SelectedDependientesMenores" 
+        name="dep_menores"
+        placeholder="Select One">
+          <ion-select-option [value]="true">Si</ion-select-option>
+          <ion-select-option [value]="false">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="SelectedDependientesMenores">
+        <ion-label color="primary" position="floating">Cuantos y edades (separados por coma)</ion-label>
+        <ion-input ngModel type="text" name="cant_menores"></ion-input>
+      </ion-item>
+      <ion-item>
+      <ion-label>Dependientes tercera edad</ion-label>
+        <ion-select [(ngModel)]="SelectedDependientesMayores" name="dep_mayores" placeholder="Select One">
+          <ion-select-option [value]="true">Si</ion-select-option>
+          <ion-select-option [value]="false">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+    <ion-item *ngIf="SelectedDependientesMayores">
+      <ion-label color="primary" position="floating">Cuantos y edades (separados por coma)</ion-label>
+      <ion-input ngModel type="text" name="cant_mayores"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Comparten vivienda</ion-label>
+        <ion-select [(ngModel)]="SelectedCompartenVivienda" name="vivienda_compartida" placeholder="Select One">
+          <ion-select-option [value]="true">Si</ion-select-option>
+          <ion-select-option [value]="false">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+    <ion-item *ngIf="SelectedCompartenVivienda">
+      <ion-label color="primary" position="floating">Cuantos</ion-label>
+      <ion-input ngModel type="number" name="cant_viviendo"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button type="submit" expand="block" color="primary">Guardar</ion-button>
+      </ion-col>
+    </ion-row>
+</form>
+<ion-content>
+
+</ion-content>

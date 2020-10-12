@@ -143,7 +143,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n  <ion-split-pane>\n    <ion-menu>\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-item (click)=\"logout()\">\n            <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n            <ion-label>\n              Logout\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app> -->\n<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n";
+    __webpack_exports__["default"] = "<ion-menu side=\"start\" menuId=\"first\" contentId=\"main\">\n  <ion-header>\n    <ion-toolbar color=\"primary\">\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n    <ion-list>\n    <ion-item routerLink=\"/user\">\n      <ion-icon slot=\"start\" name=\"person-add-outline\"></ion-icon>\n          Agregar Afiliado\n      </ion-item>\n      <ion-item routerLink=\"/list-user\">\n        <ion-icon slot=\"start\" name=\"people-outline\"></ion-icon>\n          Afiliados\n      </ion-item>\n    </ion-list>\n    <ion-item (click)=\"logout()\">\n        <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n          Logout\n    </ion-item>\n  </ion-content>\n</ion-menu>\n\n<ion-router-outlet id=\"main\"></ion-router-outlet>";
     /***/
   },
 
@@ -234,12 +234,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'list-user',
       loadChildren: function loadChildren() {
-        return __webpack_require__.e(
+        return Promise.all(
         /*! import() | pages-user-list-user-list-user-module */
-        "common").then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~list-user-list-user-module~pages-user-list-user-list-user-module"), __webpack_require__.e("common")]).then(__webpack_require__.bind(null,
         /*! ./pages/user/list-user/list-user.module */
         "./src/app/pages/user/list-user/list-user.module.ts")).then(function (m) {
           return m.ListUserPageModule;
+        });
+      }
+    }, {
+      path: 'user-update',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-user-update-update-module */
+        "update-update-module").then(__webpack_require__.bind(null,
+        /*! ./pages/user/update/update.module */
+        "./src/app/pages/user/update/update.module.ts")).then(function (m) {
+          return m.UpdatePageModule;
         });
       }
     }];
@@ -340,7 +351,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     "./src/app/services/alert.service.ts");
 
     var AppComponent = /*#__PURE__*/function () {
-      function AppComponent(platform, splashScreen, statusBar, authService, alertService, navCtrl) {
+      function AppComponent(platform, splashScreen, statusBar, authService, alertService, navCtrl, menu) {
         _classCallCheck(this, AppComponent);
 
         this.platform = platform;
@@ -349,10 +360,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.authService = authService;
         this.alertService = alertService;
         this.navCtrl = navCtrl;
+        this.menu = menu;
         this.initializeApp();
       }
 
       _createClass(AppComponent, [{
+        key: "openFirst",
+        value: function openFirst() {
+          this.menu.enable(true, 'first');
+          this.menu.open('first');
+        }
+      }, {
         key: "initializeApp",
         value: function initializeApp() {
           var _this = this;
@@ -361,6 +379,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this.statusBar.styleDefault();
 
             _this.splashScreen.hide();
+
+            _this.authService.getToken();
           });
         }
       }, {
@@ -373,7 +393,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }, function (error) {
             console.log(error);
           }, function () {
-            _this2.navCtrl.navigateRoot('/landing');
+            _this2.navCtrl.navigateRoot('/');
           });
         }
       }]);
@@ -394,6 +414,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _services_alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"]
       }];
     };
 

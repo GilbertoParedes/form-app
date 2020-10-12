@@ -4,6 +4,7 @@ import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AlertService } from './services/alert.service';
+import { MenuController } from '@ionic/angular';
 
 
 @Component({
@@ -12,21 +13,30 @@ import { AlertService } from './services/alert.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private authService: AuthService,
     private alertService: AlertService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private menu: MenuController
   ) {
     this.initializeApp();
+  }
+
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.authService.getToken();
     });
   }
 
@@ -39,7 +49,7 @@ export class AppComponent {
         console.log(error);
       },
       () => {
-        this.navCtrl.navigateRoot('/landing');
+        this.navCtrl.navigateRoot('/');
       }
     );
   }
