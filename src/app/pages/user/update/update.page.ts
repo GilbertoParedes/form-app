@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-update',
@@ -9,8 +10,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UpdatePage implements OnInit {
 
   user:object = {};
+  imageIne:string = '';
+  imagePath: string = 'http://apiform.test/storage/images/';
 
-  constructor(public router: Router, public route: ActivatedRoute) { }
+  constructor(public router: Router, public route: ActivatedRoute, private camera: Camera,) { }
 
   
 
@@ -21,10 +24,24 @@ export class UpdatePage implements OnInit {
       this.user = JSON.parse(state.user);
 
     }
-    // this.route.params.subscribe(params => {
-    //   let user = JSON.parse(params['user']);
-    //   console.log("Usuario a editar: "+ user);
-    // });
+  }
+
+  takePicture() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.imageIne = base64Image;
+    }, (err) => {
+     // Handle error
+    });
   }
 
 }

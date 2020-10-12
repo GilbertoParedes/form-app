@@ -51,7 +51,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/dashboard\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Personas registradas</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item *ngFor=\"let item of afiliados\">\n      <ion-avatar slot=\"start\">\n        <img src=\"{{'http://apiform.test/storage/images/'+item.image_ine}}\">\n      </ion-avatar>\n      <ion-label>{{ item.name }}</ion-label>\n      <!-- fab placed to the bottom end -->\n      <ion-button type=\"submit\" expand=\"block\" (click)=\"edit(item)\" color=\"primary\">Editar</ion-button>\n    </ion-item>\n  </ion-list>\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/dashboard\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Personas registradas</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item *ngFor=\"let item of afiliados\">\n      <ion-avatar slot=\"start\">\n        <img src=\"{{imagePath+item.image_ine}}\">\n      </ion-avatar>\n      <ion-label>{{ item.name }}</ion-label>\n      <ion-button type=\"submit\" expand=\"block\" (click)=\"edit(item)\" color=\"primary\">Editar</ion-button>\n    </ion-item>\n  </ion-list>\n</ion-content>\n";
     /***/
   },
 
@@ -11670,6 +11670,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.afiliadoService = afiliadoService;
         this.router = router;
         this.afiliados = [];
+        this.imagePath = 'http://apiform.test/storage/images/';
       }
 
       _createClass(ListUserPage, [{

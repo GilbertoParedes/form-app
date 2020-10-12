@@ -13,6 +13,8 @@ import { from } from 'rxjs';
 export class ListUserPage implements OnInit {
 
   afiliados:Array<object> = [];
+  imagePath: string = 'http://apiform.test/storage/images/';
+  
 
   constructor(
     private afiliadoService: AfiliadoService,
