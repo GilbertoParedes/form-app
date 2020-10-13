@@ -1121,15 +1121,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! rxjs */
     "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var src_app_services_alert_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! src/app/services/alert.service */
+    "./src/app/services/alert.service.ts");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 
     var AfiliadoService = /*#__PURE__*/function () {
-      function AfiliadoService(http, storage, env, authService) {
+      function AfiliadoService(http, storage, env, authService, alertService, navCtrl) {
         _classCallCheck(this, AfiliadoService);
 
         this.http = http;
         this.storage = storage;
         this.env = env;
         this.authService = authService;
+        this.alertService = alertService;
+        this.navCtrl = navCtrl;
         this.token = '';
       }
 
@@ -1171,9 +1185,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }, {
               headers: headers
             }).subscribe(function (data) {
+              _this3.alertService.presentToast("Afiliado Regístrado");
+
               console.log(data);
             }, function (error) {
+              var toast = _this3.alertService.presentToast(error.message);
+
               console.log(error);
+            }, function () {
+              _this3.navCtrl.navigateRoot('/list-user');
             });
           });
         }
@@ -1212,6 +1232,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         type: src_app_services_env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"]
       }, {
         type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]
+      }, {
+        type: src_app_services_alert_service__WEBPACK_IMPORTED_MODULE_7__["AlertService"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["NavController"]
       }];
     };
 

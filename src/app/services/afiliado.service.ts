@@ -6,6 +6,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Afiliado } from '../models/afiliado';
 import { Observable, from } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { AlertService } from 'src/app/services/alert.service';
+import { NavController } from '@ionic/angular';
+
 
 
 @Injectable({
@@ -20,6 +23,8 @@ export class AfiliadoService {
     private storage: NativeStorage,
     private env: EnvService,
     private authService: AuthService,
+    private alertService: AlertService,
+    private navCtrl: NavController,
   ) { }
 
   register(form: Object) {
@@ -48,10 +53,15 @@ export class AfiliadoService {
       }, { headers: headers }
       ).subscribe(
         data => {
+          this.alertService.presentToast("Afiliado Regístrado");
           console.log(data);
         },
         error => {
+          let toast = this.alertService.presentToast(error.message);
           console.log(error)
+        },
+        () => {
+          this.navCtrl.navigateRoot('/list-user');
         }
       );
     })
