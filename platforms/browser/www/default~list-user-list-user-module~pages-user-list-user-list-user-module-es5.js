@@ -51,7 +51,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/dashboard\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Personas registradas</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item *ngFor=\"let item of afiliados\" (click)=\"edit(item)\">\n      <ion-avatar slot=\"start\">\n        <img src=\"{{imagePath+item.image_ine}}\">\n      </ion-avatar>\n      <ion-label>{{ item.name }}</ion-label>\n      <!-- <ion-button type=\"submit\" expand=\"block\" (click)=\"edit(item)\" color=\"primary\">Editar</ion-button> -->\n    </ion-item>\n  </ion-list>\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/dashboard\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Personas registradas</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n<!-- fab placed to the (vertical) center and end -->\n  <ion-fab vertical=\"top\" horizontal=\"end\" slot=\"fixed\">\n    <ion-fab-button (click)=\"addUser()\">\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n  <ion-list>\n    <ion-item *ngFor=\"let item of afiliados\" (click)=\"edit(item)\">\n      <ion-avatar slot=\"start\">\n        <img src=\"{{imagePath+item.image_ine}}\">\n      </ion-avatar>\n      <ion-label>{{ item.name }}</ion-label>\n      <!-- <ion-button type=\"submit\" expand=\"block\" (click)=\"edit(item)\" color=\"primary\">Editar</ion-button> -->\n    </ion-item>\n  </ion-list>\n</ion-content>\n";
     /***/
   },
 
@@ -11662,15 +11662,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var rxjs_Rx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! rxjs/Rx */
     "./node_modules/rxjs-compat/_esm2015/Rx.js");
+    /* harmony import */
+
+
+    var src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/services/env.service */
+    "./src/app/services/env.service.ts");
 
     var ListUserPage = /*#__PURE__*/function () {
-      function ListUserPage(afiliadoService, router) {
+      function ListUserPage(afiliadoService, router, env) {
         _classCallCheck(this, ListUserPage);
 
         this.afiliadoService = afiliadoService;
         this.router = router;
+        this.env = env;
         this.afiliados = [];
-        this.imagePath = 'http://apiform.test/storage/images/';
+        this.imagePath = this.env.API_URL + 'storage/images/';
       }
 
       _createClass(ListUserPage, [{
@@ -11705,6 +11712,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }));
         }
       }, {
+        key: "addUser",
+        value: function addUser() {
+          this.router.navigate(["user"]);
+        }
+      }, {
         key: "edit",
         value: function edit(user) {
           console.log("Id usuario: " + user);
@@ -11724,6 +11736,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         type: _services_afiliado_service__WEBPACK_IMPORTED_MODULE_2__["AfiliadoService"]
       }, {
         type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
+        type: src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"]
       }];
     };
 

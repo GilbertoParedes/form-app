@@ -4,6 +4,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { tap } from 'rxjs/operators';
 import { AfiliadoService } from '../../services/afiliado.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EnvService } from 'src/app/services/env.service';
 
 @Component({
   selector: 'app-user',
@@ -14,18 +15,24 @@ export class UserPage implements OnInit {
   selected_genero:string;
   fecha:string;
   imageIne:string;
-  imagePath: string = 'http://apiform.test/storage/images/';
+  imagePath: string = this.env.API_URL+'storage/images/';
   data: any;
   isSubmitted = false;
   
   constructor(
     private camera: Camera,
     private afiliadoService: AfiliadoService,
+    private env: EnvService,
   ) {
     this.data = {
       name: '',
       apellido: '',
-      telefono: '',
+      cel: '',
+      f_nacimiento: '',
+      l_nacimiento: '',
+      tiempo_viviendo: '',
+      calle: '',
+      colonia: '',
     };
    }
 

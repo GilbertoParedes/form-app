@@ -4,6 +4,7 @@ import { Afiliado } from '../../../models/afiliado';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
 import { from } from 'rxjs';
+import { EnvService } from 'src/app/services/env.service';
 
 @Component({
   selector: 'app-list-user',
@@ -13,12 +14,13 @@ import { from } from 'rxjs';
 export class ListUserPage implements OnInit {
 
   afiliados:Array<object> = [];
-  imagePath: string = 'http://apiform.test/storage/images/';
+  imagePath: string = this.env.API_URL+'storage/images/';
   
 
   constructor(
     private afiliadoService: AfiliadoService,
-    private router: Router
+    private router: Router,
+    private env: EnvService,
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,10 @@ export class ListUserPage implements OnInit {
         console.log(error);  
       }
     )
+  }
+
+  addUser() {
+    this.router.navigate(["user"]);
   }
 
   edit(user) {
