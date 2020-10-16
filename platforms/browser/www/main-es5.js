@@ -838,7 +838,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var EnvService = function EnvService() {
       _classCallCheck(this, EnvService);
 
-      this.API_URL = 'http://apiform.test/';
+      // API_URL = 'http://apiform.test/';
+      this.API_URL = 'http://api.pormibahia.org/';
     };
 
     EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -944,7 +945,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! /home/backend/Documentos/code/form-app/src/main.ts */
+    /*! /home/zerocool/Documentos/code/form-app/src/main.ts */
     "./src/main.ts");
     /***/
   }

@@ -678,7 +678,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let EnvService = class EnvService {
     constructor() {
-        this.API_URL = 'http://apiform.test/';
+        // API_URL = 'http://apiform.test/';
+        this.API_URL = 'http://api.pormibahia.org/';
     }
 };
 EnvService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -752,7 +753,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/backend/Documentos/code/form-app/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/zerocool/Documentos/code/form-app/src/main.ts */"./src/main.ts");
 
 
 /***/ })
